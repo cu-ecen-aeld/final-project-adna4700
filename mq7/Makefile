@@ -16,7 +16,7 @@ led.o: mq7.c
 	$(CC) $(CFLAGS) -c mq7.c
 
 led: led.o
-	$(CC) $(CFLAGS) mq7.o -o mq7 -lgpiod
+	$(CC) $(CFLAGS) mq7.o -o mq7 -L/usr/local/lib -lgpiod
 
 clean:
 	rm -f *.o
