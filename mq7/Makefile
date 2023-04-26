@@ -9,10 +9,10 @@ ifeq ($(INCLUDES),)
 	INCLUDES = -I/
 endif
 
-all: led 
+all: mq7
 
 
-led.o: led.c
+led.o: mq7.c
 	$(CC) $(CFLAGS) -c mq7.c
 
 led: led.o
