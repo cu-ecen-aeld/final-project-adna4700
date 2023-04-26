@@ -12,10 +12,10 @@ endif
 all: mq7
 
 
-led.o: mq7.c
+mq7.o: mq7.c
 	$(CC) $(CFLAGS) -c mq7.c
 
-led: led.o
+mq7: mq7.o
 	$(CC) $(CFLAGS) mq7.o -o mq7 -lgpiod
 
 clean:
