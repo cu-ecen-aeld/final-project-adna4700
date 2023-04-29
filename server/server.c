@@ -1,18 +1,3 @@
-/*
-References: https://man7.org/linux/man-pages/man2/getsockname.2.html
-https://beej.us/guide/bgnet/html/#a-simple-stream-server
-https://www.geeksforgeeks.org/tcp-server-client-implementation-in-c/
-https://nullraum.net/how-to-create-a-daemon-in-c/
-https://stackoverflow.com/questions/14846768/in-c-how-do-i-redirect-stdout-fileno-to-dev-null-using-dup2-and-then-redirect
-https://man7.org/linux/man-pages/man7/queue.7.html
-https://www.geeksforgeeks.org/handling-multiple-clients-on-server-with-multithreading-using-socket-programming-in-c-cpp/
-https://man7.org/linux/man-pages/man3/slist.3.html
-https://pubs.opengroup.org/onlinepubs/7908799/xsh/time.h.html
-https://linux.die.net/man/3/clock_gettime
-https://man7.org/linux/man-pages/man3/strftime.3.html
-https://www.geeksforgeeks.org/socket-programming-cc/
-*/
-
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
