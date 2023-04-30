@@ -37,8 +37,8 @@ int sock_fd = -1;
 void graceful_exit();
 bool signal_caught = false;  // initializing to false to indicate there is no SIGTERM or SIGINT caught
 
- struct gpiod_chip *chip;
- struct gpiod_line *mq7_line;
+ //struct gpiod_chip *chip;
+ //struct gpiod_line *mq7_line;
 
 void signal_handler(int signal)
 {
@@ -60,8 +60,8 @@ void graceful_exit()
        shutdown(sock_fd, SHUT_RDWR);
        close(sock_fd);
        // Closing both recv and send on the server socket 
-   	 gpiod_line_release(mq7_line); // Release GPIO line
-         gpiod_chip_close(chip);
+//   	 gpiod_line_release(mq7_line); // Release GPIO line
+//         gpiod_chip_close(chip);
     }
  
     closelog();
@@ -85,9 +85,9 @@ int main(int argc, char *argv[])
     char *buffer_g = "HARMFULL!!! CO level above 100 ppm\r\n";
     printf("2\r\n");
 	
-    chip = gpiod_chip_open("/dev/gpiochip0"); // Open GPIO chip
-    mq7_line = gpiod_chip_get_line(chip, MQ7_PIN); // Get GPIO line
-    gpiod_line_request_input(mq7_line, "mq7"); // Set GPIO line as input
+//    chip = gpiod_chip_open("/dev/gpiochip0"); // Open GPIO chip
+//    mq7_line = gpiod_chip_get_line(chip, MQ7_PIN); // Get GPIO line
+//    gpiod_line_request_input(mq7_line, "mq7"); // Set GPIO line as input
     printf("3\r\n");
 
     // Registering error signals
@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
     while (1)
     {
 	
-	mq7_value = gpiod_line_get_value(mq7_line); // Read GPIO value
+//	mq7_value = gpiod_line_get_value(mq7_line); // Read GPIO value
 
         if(mq7_value == 1)
         {

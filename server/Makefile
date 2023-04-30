@@ -1,17 +1,6 @@
-
-
-
-
-ifeq ($(CC),)
-	CC = $(CROSS_COMPILE)gcc
-endif
-ifeq ($CFLAGS),)
-	CFLAGS = -g -Wall -Werror
-endif
-
-ifeq ($(INCLUDES),)
-	INCLUDES = -I/
-endif
+CC ?= $(CROSS_COMPILE)gcc
+CFLAGS ?= -g -Wall -Werror
+INCLUDES = -I/
 
 all: server
 

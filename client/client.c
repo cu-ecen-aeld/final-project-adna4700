@@ -26,9 +26,10 @@ Reference: https://www.geeksforgeeks.org/socket-programming-cc/
 #include <time.h>
 #include <sys/time.h>
 #include <poll.h>
+#include <arpa/inet.h>
 
 #define PORT 9000
-#define MAX_SIZE 10
+#define MAX_SIZE 1024
 
 void graceful_exit();
 int sock_fd = -1, cli_fd;
@@ -52,8 +53,8 @@ int main()
 	openlog("client", 0, LOG_USER);
  
 	int received_b = 0; 
-	char buffer[10];
-	char *ip_addr = "128.0.0.1";
+	char buffer[MAX_SIZE];
+	//char *ip_addr = "127.0.0.1";
 	struct sockaddr_in server;
 	
 
@@ -77,8 +78,10 @@ int main()
 	bzero(&server, sizeof(server));
 
         server.sin_family = AF_INET;
-        server.sin_addr.s_addr = inet_addr(ip_addr);
+        server.sin_addr.s_addr = inet_addr("127.0.0.1");
         server.sin_port = htons(PORT);
+	
+	//inet_pton(AF_INET, "127.0.0.1", &server.sin.addr);
 	
 	// client-server socket connection
         cli_fd = connect(sock_fd, (struct sockaddr*)&server, sizeof(server));
@@ -96,7 +99,7 @@ int main()
         	syslog(LOG_DEBUG, "The client-server connection elstablished\r\n");		
 	}
 	
-	while((received_b = recv(sock_fd, buffer, 10, 0)) > 0)
+	while((received_b = recv(sock_fd, buffer, MAX_SIZE, 0)) > 0)
 	{
 		    for (int i = 0; i < received_b; i++)
     			{
@@ -105,7 +108,7 @@ int main()
 	}
 	if(received_b == -1)
 	{
-		printf("Error in reading from client\r\n");
+		perror("Error in reading from client");
         	syslog(LOG_DEBUG, "Error in reading from client\r\n");
 		graceful_exit();
 		exit(0);		
