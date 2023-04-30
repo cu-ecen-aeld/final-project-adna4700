@@ -1,15 +1,17 @@
-CC ?= $(CROSS_COMPILE)gcc
-CFLAGS ?= -g -Wall -Werror
-INCLUDES = -I/
-
-all: server
-
-server.o: server.c
-	$(CC) $(CFLAGS) -c server.c
-
-server: server.o
-	$(CC) $(CFLAGS) server.o -o server -lgpiod
+CROSS_COMPILE=
+ifeq ($(CC),)
+	CC = $(CROSS_COMPILE)gcc
+endif
+ifeq ($(CFLAGS),)
+	CFLAGS = -g -Wall -Werror
+endif
+ifeq ($(LDFLAGS),)
+	LDFLAGS = -pthread -lrt -lgpiod
+endif
+all:server
 
 clean:
-	rm -f *.o
-	rm -f server
+	rm -f *.o server *.elf *.map
+
+server: server.o
+	$(CC) $(CFLAGS) $^ -o $@ $(INCLUDES) $(LDFLAGS)
