@@ -198,12 +198,12 @@ int main(int argc, char *argv[])
         if(mq7_value == 1)
         {
 		printf("%s", buffer_n);
-		send(cli_fd,"CO is in the normal range 69 ppm to 80 ppm\r\n", sizeof("CO is in the normal range 69 ppm to 80 ppm\r\n"), 0);
+		send(cli_fd,"CO is in the normal range 69 ppm to 89 ppm\r\n", sizeof("CO is in the normal range 69 ppm to 80 ppm\r\n"), 0);
 	}
 	else
 	{
 		printf("%s", buffer_g);
-		send(cli_fd,"HARMFULL!!! CO level above 100 ppm\r\n", sizeof("HARMFULL!!! CO level above 100 ppm\r\n"), 0);
+		send(cli_fd,"HARMFULL!!! CO level above 200 ppm\r\n", sizeof("HARMFULL!!! CO level above 100 ppm\r\n"), 0);
 	}
 
         usleep(100000); // Wait for 100 milliseconds

@@ -78,7 +78,7 @@ int main()
 	bzero(&server, sizeof(server));
 
         server.sin_family = AF_INET;
-        server.sin_addr.s_addr = inet_addr("127.0.0.1");
+        server.sin_addr.s_addr = inet_addr("128.138.189.114");
         server.sin_port = htons(PORT);
 	
 	//inet_pton(AF_INET, "127.0.0.1", &server.sin.addr);
